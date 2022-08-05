@@ -1,0 +1,62 @@
+strict graph ip_map {
+	fontname="Helvetica,Arial,sans-serif"
+	overlap="ipsep"
+	layout=twopi
+    // component
+    subgraph cluster_1m {
+		style=filled;
+		color=lightgrey;
+        node [shape=box; style=filled; fillcolor=khaki2]
+        MPU9250;
+        C1; C2; C3
+        GND1; GND2; GND3; GND4; GND5
+        VDC1; VDC2;
+        VDDIO1; VDDIO2
+   }
+    // pin
+    subgraph cluster_2m {
+		style=filled;
+		color=yellow;
+        node [shape=box; style=filled; fillcolor=darkolivegreen3]
+        M1_1; M1_8; M1_9; M1_10; M1_13; M1_18; M1_20; M1_22; M1_23; M1_24;
+        C1_1; C1_2; C2_1; C2_2; C3_1; C3_2;
+        GND1_1; GND2_1; GND3_1; GND4_1; GND5_1
+        VDC1_1; VDC2_1;
+        VDDIO1_1; VDDIO2_1;
+   }
+    // net
+    subgraph cluster_3m {
+		style=filled;
+		color=red;
+        node [shape=box; style=filled; fillcolor=skyblue]
+    	N1; N2; N3; N4; N5; N6; N7; N8; N9; N10; N11; N12; N13;
+   }
+    
+	edge [fontname="Helvetica,Arial,sans-serif"]
+    MPU9250 -- {M1_1; M1_8; M1_9; M1_10; M1_13; M1_18; M1_20; M1_22; M1_23; M1_24}
+    C1 -- {C1_1; C1_2}
+    C2 -- {C2_1; C2_2}
+    C3 -- {C3_1; C3_2}
+    GND1 -- {GND1_1}
+    GND2 -- {GND2_1}
+    GND3 -- {GND3_1}
+    GND4 -- {GND4_1}
+    GND5 -- {GND5_1}
+    VDC1 -- {VDC1_1}
+    VDC2 -- {VDC2_1}
+    VDDIO1 -- {VDDIO1_1}
+    VDDIO2 -- {VDDIO2_1}
+    N1 -- {M1_1; VDDIO1_1}
+    N2 -- {M1_8; VDC1_1; C3_1}
+    N3 -- {M1_10; C1_1}
+    N4 -- {M1_13; VDC2_1; C2_1}
+    N5 -- {M1_18; GND4_1}
+    N6 -- {M1_20; GND5_1}
+    N7 -- {M1_22; VDDIO2_1}
+    N8 -- {C1_2; GND1_1}
+    N9 -- {C2_2; GND2_1}
+    N10 -- {C3_2; GND3_1}
+    N11 -- M1_9;
+    N12 -- M1_23;
+    N13 -- M1_24;
+}  
